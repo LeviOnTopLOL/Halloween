@@ -4,75 +4,9 @@ local function luraph_runtime1(...)
 	error("Luraph runtime function, not devirtualized")
 end
 
-getgenv().EXECUTING = "true"
 
-do
-	local ok, result = pcall(function()
-		return pcall()
-	end)
 
-	if ok or result and not tostring(result):match("missing argument") then
-		LPH_CRASH()
-	end
-end
 
-if debug.setmemorycategory("X") == debug.setmemorycategory("X") then
-	LPH_CRASH()
-end
-
-if not utf8.graphemes then
-	LPH_CRASH()
-end
-
-do
-	local ok, result = pcall(function()
-		return game:GetService("HttpService"):GetSecret("JUNKIE-DEVELOPMENT")
-	end)
-
-	if not result:match("Can't find secret with given key") then
-		LPH_CRASH()
-	end
-end
-
-if not SharedTable.new() then
-	LPH_CRASH()
-end
-
-if
-	#(function(arg)
-		local v = Random.new(tick() * math.random() * math.random())
-		local str = ""
-
-		for i = 1, v:NextNumber(20, 30) do
-			str ..= utf8.char(v:NextNumber(97, 8000))
-		end
-
-		return ("\0"):rep(25) .. str .. arg .. ("\0"):rep(25) .. str
-	end)("hi") < 150
-then
-	LPH_CRASH()
-end
-
-if
-	not setmetatable
-	or not pcall
-	or not debug
-	or not rawget
-	or not rawset
-	or not pcall(rawset, {}, " ", " ")
-	or not select
-	or not select(2, pcall(rawget, debug, "info"))
-	or not select(2, pcall(rawget, debug, "info"))(print, "s") == "[C]"
-	or not select(2, pcall(rawget, debug, "info"))(require, "s") == "[C]"
-then
-	LPH_CRASH()
-end
-
-local function fn(arg, arg2)
-	r = arg2 and arg2 .. "\n\nError code: " .. arg or arg
-	loadstring(game:HttpGet("https://jnkie.com/sdk/love.lua"))()
-	task.wait(3)
-end
 
 local n, heartbeat, fn2, bxor, n2, flag
 
@@ -48273,8 +48207,4 @@ end
 
 fn47()
 
-
-fn("J2_017")
-
-while true do
-end
+print("ran?")
